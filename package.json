@@ -1,0 +1,31 @@
+{
+  "name": "miralo-tv",
+  "version": "1.0.0",
+  "description": "Miralo - TV is an app of movies using the api of TMDB to practice coding.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/main.js",
+    "lint:fix": "eslint src/main.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pipetoroc/miralo-tv.git"
+  },
+  "keywords": [
+    "javaScript",
+    "CSS",
+    "HTML"
+  ],
+  "author": "Felipe Toro C",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pipetoroc/miralo-tv/issues"
+  },
+  "homepage": "https://github.com/pipetoroc/miralo-tv#readme",
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
+  }
+}
