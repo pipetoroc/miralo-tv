@@ -1,9 +1,10 @@
 const API_KEY = '05b80c31b8ddf6ca35cb30a17cc64420';
 
 async function getRecomendation() {
-  const trend = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
+  const URL_TREND = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
+  const recomendationSection = document.getElementById('recomendations');
 
-  const response = await fetch(trend);
+  const response = await fetch(URL_TREND);
   const data = await response.json();
 
   const { results } = data;
@@ -12,7 +13,6 @@ async function getRecomendation() {
     const {
       title, name, overview, poster_path,
     } = item;
-    const recomendationSection = document.getElementById('recomendations');
 
     const article = document.createElement('article');
     article.className = 'recomendations__article';
@@ -44,4 +44,27 @@ async function getRecomendation() {
   });
 }
 
+async function getCategories() {
+  const URL_CATEGORY = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
+  const categories = document.getElementById('categories');
+  const container = document.createElement('div');
+  container.className = 'main__container';
+
+
+  const response = await fetch(URL_CATEGORY);
+  const data = await response.json();
+  console.log(data);
+
+  const { genres } = data;
+
+  genres.map((category) =>{
+    const button = document.createElement('button');
+    button.textContent = category.name;
+    button.className = 'main__button';
+    container.appendChild(button);
+  });
+  categories.appendChild(container);
+}
+
 getRecomendation(API_KEY);
+getCategories(API_KEY);
