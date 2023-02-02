@@ -82,8 +82,16 @@ h1,h2,h3{
   margin-top: 14px;
   text-align: justify;
   font-size: 1.6rem;
-  color: var(--text-color);
+  color: rgb(255,255,255);
   width: 30ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.main__overview:hover{
+  border-bottom: solid 2px  var(--hover-button);
 }
 .recomendations__article{
   width: 320px;
@@ -119,4 +127,7 @@ h1,h2,h3{
 }
 .main__button:hover{
   border: solid 2px var(--hover-button);
+}
+.noShow{
+  white-space: normal;
 }
