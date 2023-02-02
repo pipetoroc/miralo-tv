@@ -12,7 +12,9 @@ async function getRecomendation() {
 
   let count = 1;
   results.forEach((item) => {
-    const { title, name, overview, poster_path } = item;
+    const {
+      title, name, overview, poster_path,
+    } = item;
 
     const article = document.createElement('article');
     article.className = 'recomendations__article';
@@ -59,6 +61,3 @@ async function getCategories() {
   });
   categories.appendChild(container);
 }
-
-getRecomendation(API_KEY);
-getCategories(API_KEY);
