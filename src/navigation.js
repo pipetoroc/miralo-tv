@@ -1,5 +1,7 @@
+window.addEventListener('DOMContentLoaded', navigator, false);
+window.addEventListener('hashchange', navigator, false);
+
 function homePage() {
-  console.log('home');
   getRecomendation(API_KEY);
   getCategories(API_KEY);
 }
@@ -23,18 +25,15 @@ function search() {
 function navigator() {
   if (location.hash.startsWith('#trends')) {
     trends();
-  } else if (location.hash.startsWith('#search')) {
+  } else if (location.hash.startsWith('#search=')) {
     search();
-  } else if (location.hash.startsWith('#movie')) {
+  } else if (location.hash.startsWith('#movie=')) {
     movies();
-  } else if (location.hash.startsWith('#categories')) {
+  } else if (location.hash.startsWith('#categories=')) {
     categories();
   } else {
     homePage();
   }
 }
-
-window.addEventListener('DOMContentLoaded', navigator, false);
-window.addEventListener('hashchange', navigator, false);
 
 navigator();

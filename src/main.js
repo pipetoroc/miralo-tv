@@ -8,7 +8,6 @@ async function getRecomendation() {
   const data = await response.json();
 
   const { results } = data;
-  console.log(results);
 
   let count = 1;
   results.forEach((item) => {
@@ -45,8 +44,12 @@ async function getRecomendation() {
 async function getCategories() {
   const URL_CATEGORY = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
   const categories = document.getElementById('categories');
-  const container = document.createElement('div');
-  container.className = 'main__container';
+
+  let container = document.querySelector('.main__container');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'main__container';
+  }
 
   const response = await fetch(URL_CATEGORY);
   const data = await response.json();
@@ -57,7 +60,32 @@ async function getCategories() {
     const button = document.createElement('button');
     button.textContent = category.name;
     button.className = 'main__button';
-    container.appendChild(button);
+    button.addEventListener('click', () => {
+      location.hash = `#category=${category.id}`;
+      getGenre(category.id);
+    });
+    return container.appendChild(button);
   });
-  categories.appendChild(container);
+  if (!document.querySelector('.main__container')) {
+    categories.appendChild(container);
+  }
+}
+
+async function getGenre(id) {
+  const URL_GENRE = `https://api.themoviedb.org/3/discover/movie?with_genres=${id}&api_key=${API_KEY}`;
+  const genreSecton = document.getElementById('genre');
+
+  const response = await fetch(URL_GENRE);
+  const data = await response.json();
+
+  const { results } = data;
+
+  results.map((movie) => {
+    const poster = document.createElement('img');
+    poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    poster.className = 'genre__img';
+    poster.setAttribute('alt', `Imagen de poster ${movie.title}`);
+    poster.setAttribute('loading', 'lazy');
+    genreSecton.appendChild(poster);
+  });
 }
