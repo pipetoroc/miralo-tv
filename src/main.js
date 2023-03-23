@@ -63,7 +63,7 @@ async function getCategories () {
     button.textContent = category.name
     button.className = 'main__button'
     button.addEventListener('click', () => {
-      location.hash = `#category=${category.id}`
+      location.hash = `#category=${category.id}-${category.name}`
       getGenre(category.id, category.name)
     })
     return container.appendChild(button)
@@ -79,19 +79,46 @@ async function getGenre (id, name) {
   const h2 = document.createElement('h2')
   h2.className = 'main__h2'
   h2.innerHTML = name
+  h2.setAttribute('id', 'genreTitle')
   genreSecton.appendChild(h2)
+
+  const ulContainer = document.createElement('ul')
+  ulContainer.className = 'main__container main__container--div'
+  ulContainer.setAttribute('id', 'ulContainer')
 
   const response = await fetch(URL_GENRE)
   const data = await response.json()
 
   const { results } = data
+  console.log(results)
 
-  results.map((movie) => {
+  results.forEach(movie => {
+    const item = document.createElement('li')
     const poster = document.createElement('img')
     poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
     poster.className = 'genre__img'
     poster.setAttribute('alt', `Imagen de poster ${movie.title}`)
     poster.setAttribute('loading', 'lazy')
-    return genreSecton.appendChild(poster)
+    poster.addEventListener('click', () => {
+      location.hash = `#detail=${movie.id}`
+      getDetail(movie.id, movie.title, movie.poster_path)
+    })
+    item.appendChild(poster)
+    ulContainer.appendChild(item)
+    return genreSecton.appendChild(ulContainer)
+    // results.map((movie) => {
+    // const poster = document.createElement('img')
+    // poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+    // poster.className = 'genre__img'
+    // poster.setAttribute('alt', `Imagen de poster ${movie.title}`)
+    // poster.setAttribute('loading', 'lazy')
+    // poster.addEventListener('click', () => {
+    //   location.hash = `#detail=${movie.id}`
+    //   getDetail(movie.id, movie.title, movie.poster_path)
+    // return genreSecton.appendChild(poster)
   })
 }
+
+// async function getDetail (id) {
+
+// }
