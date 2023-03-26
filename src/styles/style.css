@@ -326,14 +326,12 @@ h1,h2,h3{
   outline: none;
 }
 .main__form{
-  height: 68px;
-  margin-bottom: 40px;
-}
-.main__div{
   position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  height: 68px;
+  margin-bottom: 40px;
   height: 68px;
 }
 

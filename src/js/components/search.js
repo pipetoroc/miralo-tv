@@ -5,17 +5,14 @@ function search () {
     const main = document.getElementsByClassName('main')
     const form = document.createElement('form')
     form.className = 'main__form'
-    const div = document.createElement('div')
-    div.className = 'main__div'
     const i = document.createElement('i')
     i.className = 'fa-solid fa-magnifying-glass main__icon'
     const input = document.createElement('input')
     input.className = 'main__input'
     input.placeholder = 'What are you looking for?'
 
-    form.appendChild(div)
-    div.appendChild(i)
-    div.appendChild(input)
+    form.appendChild(i)
+    form.appendChild(input)
 
     main[0].prepend(form)
   }
