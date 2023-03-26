@@ -1,9 +1,12 @@
+import { trending } from './components/trending.js'
+import { genreMovies } from './components/genreMovies.js'
+
 window.addEventListener('DOMContentLoaded', () => navigator(), false)
 window.addEventListener('hashchange', () => navigator(), false)
 
 function homePage () {
-  getRecomendation(API_KEY)
-  getCategories(API_KEY)
+  trending()
+  genreMovies()
 }
 
 function trends () {
@@ -22,7 +25,7 @@ function search () {
   console.log('Search')
 }
 
-function navigator () {
+export default function navigator () {
   if (location.hash.startsWith('#trends')) {
     trends()
   } else if (location.hash.startsWith('#search=')) {
