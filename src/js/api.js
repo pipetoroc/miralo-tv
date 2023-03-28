@@ -8,12 +8,11 @@ async function getRecomendation () {
   const data = await response.json()
 
   const { results } = data
-  console.log(results)
   return results
 }
 
 async function getCategories () {
-  const URL_CATEGORY = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+  const URL_CATEGORY = `${URL}/genre/movie/list?api_key=${API_KEY}`
 
   const response = await fetch(URL_CATEGORY)
   const data = await response.json()
@@ -23,14 +22,30 @@ async function getCategories () {
 }
 
 async function getGenre (id) {
-  const URL_GENRE = `https://api.themoviedb.org/3/discover/movie?with_genres=${id}&api_key=${API_KEY}`
+  const URL_GENRE = `${URL}/discover/movie?with_genres=${id}&api_key=${API_KEY}`
 
   const response = await fetch(URL_GENRE)
   const data = await response.json()
 
   const { results } = data
-  console.log(results)
   return results
 }
 
-export { getRecomendation, getCategories, getGenre }
+// async function getCollection () {
+//   const URL_COLLECTION = `${URL}/search/movie?api_key=${API_KEY}&query=Vengadores`
+//   const response = await fetch(URL_COLLECTION)
+//   const data = await response.json()
+
+//   console.log(data)
+// }
+
+async function getCollection (query) {
+  const URL_COLLECTION = `${URL}/search/movie?api_key=${API_KEY}&query=${query}`
+
+  const response = await fetch(URL_COLLECTION)
+  const data = await response.json()
+  const { results } = data
+  return results
+}
+
+export { getRecomendation, getCategories, getGenre, getCollection }
