@@ -1,18 +1,24 @@
-import { getCollection } from '../api.js'
 import { showResults } from './showResults.js'
 
-function search () {
+function searchInput () {
   const lentIcon = document.getElementById('header__search')
 
   const showInput = () => {
-    const main = document.getElementsByClassName('main')
+    const main = document.querySelector('main')
+    const existingForm = document.querySelector('.main__form')
+
+    if (existingForm) {
+      return
+    }
+
     const form = document.createElement('form')
-    form.addEventListener('submit', (e) => {
-      e.preventDefault()
-    })
     form.className = 'main__form'
     const i = document.createElement('i')
     i.className = 'fa-solid fa-magnifying-glass main__icon'
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+    })
     const input = document.createElement('input')
     input.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
@@ -26,9 +32,10 @@ function search () {
     form.appendChild(i)
     form.appendChild(input)
 
-    main[0].prepend(form)
+    main.prepend(form)
+    input.focus()
   }
   lentIcon.addEventListener('click', showInput)
 }
 
-export { search }
+export { searchInput }

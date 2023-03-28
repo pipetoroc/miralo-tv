@@ -17,14 +17,15 @@ function genreMovies (id, name) {
   getGenre(id).then((results) => {
     results.forEach(movie => {
       const item = document.createElement('li')
+      item.className = 'search__li'
       const poster = document.createElement('img')
       poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
       poster.className = 'genre__img'
       poster.setAttribute('alt', `Imagen de poster ${movie.title}`)
       poster.setAttribute('loading', 'lazy')
       poster.addEventListener('click', () => {
-        location.hash = `#detail=${movie.id}`
-        getDetail(movie.id, movie.title, movie.poster_path)
+        location.hash = `#detail=${movie.id}` // eslint-disable-line
+        getDetail(movie.id, movie.title, movie.poster_path) // eslint-disable-line
       })
       item.appendChild(poster)
       ulContainer.appendChild(item)

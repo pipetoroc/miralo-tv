@@ -7,7 +7,7 @@ function trending () {
     let count = 1
     results.forEach((item) => {
       const {
-        title, name, overview, poster_path
+        title, overview, poster_path // eslint-disable-line
       } = item
 
       const article = document.createElement('article')
@@ -15,7 +15,7 @@ function trending () {
       article.addEventListener('click', () => console.log('mostrar los detalles de la película'))
 
       const poster = document.createElement('img')
-      poster.src = `https://image.tmdb.org/t/p/w500/${poster_path}`
+      poster.src = `https://image.tmdb.org/t/p/w500/${poster_path}` // eslint-disable-line
       poster.className = 'main__img'
       poster.setAttribute('alt', `Imagen de poster ${title}`)
       poster.setAttribute('loading', 'lazy')

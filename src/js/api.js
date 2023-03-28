@@ -31,14 +31,6 @@ async function getGenre (id) {
   return results
 }
 
-// async function getCollection () {
-//   const URL_COLLECTION = `${URL}/search/movie?api_key=${API_KEY}&query=Vengadores`
-//   const response = await fetch(URL_COLLECTION)
-//   const data = await response.json()
-
-//   console.log(data)
-// }
-
 async function getCollection (query) {
   const URL_COLLECTION = `${URL}/search/movie?api_key=${API_KEY}&query=${query}`
 
