@@ -4,8 +4,8 @@ import { searchInput } from './components/searchInput.js'
 
 function homePage () {
   trending()
-  categories()
   searchInput()
+  categories()
 }
 
 export { homePage }

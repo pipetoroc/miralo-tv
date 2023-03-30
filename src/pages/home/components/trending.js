@@ -1,5 +1,5 @@
 import { getRecomendation } from '../../../js/api.js'
-import { showDetails } from '../../details/components/showDetails.js'
+import { detailsPage } from '../../details/detailsPage.js'
 
 function trending () {
   const recomendationSection = document.getElementById('recomendations')
@@ -10,10 +10,12 @@ function trending () {
       const {
         title, overview, poster_path, id // eslint-disable-line
       } = item
-
       const article = document.createElement('article')
       article.className = 'recomendations__article'
-      article.addEventListener('click', showDetails)
+      article.addEventListener('click', () => {
+        location.hash = `#movie-detail=${id}` // eslint-disable-line
+        detailsPage(id, title, poster_path) // eslint-disable-line
+      })
 
       const poster = document.createElement('img')
       poster.src = `https://image.tmdb.org/t/p/w500/${poster_path}` // eslint-disable-line

@@ -1,4 +1,5 @@
 import { getGenre } from '../../../js/api.js'
+import { detailsPage } from '../../details/detailsPage.js'
 
 function genreMovies (id, name) {
   const genreSecton = document.getElementById('genre')
@@ -11,7 +12,7 @@ function genreMovies (id, name) {
   genreSecton.appendChild(h2)
 
   const ulContainer = document.createElement('ul')
-  ulContainer.className = 'main__container main__container--div'
+  ulContainer.className = 'main__container'
   ulContainer.setAttribute('id', 'ulContainer')
 
   getGenre(id).then((results) => {
@@ -24,13 +25,14 @@ function genreMovies (id, name) {
       poster.setAttribute('alt', `Imagen de poster ${movie.title}`)
       poster.setAttribute('loading', 'lazy')
       poster.addEventListener('click', () => {
-        location.hash = `#detail=${movie.id}` // eslint-disable-line
-        getDetail(movie.id, movie.title, movie.poster_path) // eslint-disable-line
+        location.hash = `#movie-detail=${movie.id}` // eslint-disable-line
+        detailsPage(movie.id, movie.title, movie.poster_path) // eslint-disable-line
       })
       item.appendChild(poster)
       ulContainer.appendChild(item)
-      return genreSecton.appendChild(ulContainer)
+      genreSecton.appendChild(ulContainer)
     })
+    genreSecton.scrollIntoView({ behavior: 'smooth' })
   })
 }
 

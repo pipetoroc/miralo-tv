@@ -1,4 +1,5 @@
 import { getCollection } from '../../../js/api.js'
+import { detailsPage } from '../../details/detailsPage.js'
 
 function showResults (query) {
   const sectionSearch = document.getElementById('search')
@@ -12,21 +13,23 @@ function showResults (query) {
 
   const categoriesSection = document.getElementById('categories')
   categoriesSection.classList.add('inactive')
-  categoriesSection.classList.remove('main__container')
 
   const genreSection = document.getElementById('genre')
   genreSection.classList.add('inactive')
 
   const ul = document.createElement('ul')
-  ul.className = 'main__container main__container--div'
+  ul.className = 'main__container'
 
   getCollection(query).then((results) => {
-    console.log(results)
     sectionSearch.innerHTML = ''
 
     results.forEach(element => {
-      const { title, poster_path } = element // eslint-disable-line
+      const { title, poster_path, id } = element // eslint-disable-line
       const li = document.createElement('li')
+      li.addEventListener('click', () => {
+        location.hash = `#movie-detail=${id}`
+        detailsPage(id, title, poster_path)
+      })
       const div = document.createElement('div')
       div.className = 'search__li'
       const img = document.createElement('img')

@@ -1,10 +1,11 @@
-import { showDetails } from '../pages/details/components/showDetails.js'
 import { genreMovies } from '../pages/home/components/genreMovies.js'
 import { showResults } from '../pages/search/components/showResults.js'
 import { homePage } from '../pages/home/homePage.js'
+import { detailsPage } from '../pages/details/detailsPage.js'
 
 const logoHome = document.getElementById('logoHome')
 logoHome.addEventListener('click', () => {
+  history.replaceState(null, null, ' ')
   location.reload() // eslint-disable-line
 })
 
@@ -16,7 +17,7 @@ function homeNavigation () {
 }
 
 function detailPage () {
-  showDetails()
+  detailsPage()
 }
 
 function categoriesPage () {

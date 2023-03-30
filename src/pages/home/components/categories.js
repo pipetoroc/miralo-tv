@@ -6,7 +6,8 @@ function categories () {
     const categoriesSection = document.getElementById('categories')
     categoriesSection.innerHTML = ''
 
-    categoriesSection.classList.add('main__container')
+    const divContainer = document.createElement('div')
+    divContainer.className = 'main__container'
 
     genres.forEach(category => {
       const button = document.createElement('button')
@@ -16,7 +17,8 @@ function categories () {
         location.hash = `#category=${category.id}-${category.name}` // eslint-disable-line
         genreMovies(category.id, category.name)
       })
-      return categoriesSection.appendChild(button)
+      divContainer.appendChild(button)
+      return categoriesSection.appendChild(divContainer)
     })
   })
 }
