@@ -1,4 +1,4 @@
-import { showResults } from './showResults.js'
+import { showResults } from '../../search/components/showResults.js'
 
 function searchInput () {
   const lentIcon = document.getElementById('header__search')

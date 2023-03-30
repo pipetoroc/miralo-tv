@@ -1,4 +1,4 @@
-import { getCollection } from '../api.js'
+import { getCollection } from '../../../js/api.js'
 
 function showResults (query) {
   const sectionSearch = document.getElementById('search')
@@ -12,6 +12,7 @@ function showResults (query) {
 
   const categoriesSection = document.getElementById('categories')
   categoriesSection.classList.add('inactive')
+  categoriesSection.classList.remove('main__container')
 
   const genreSection = document.getElementById('genre')
   genreSection.classList.add('inactive')

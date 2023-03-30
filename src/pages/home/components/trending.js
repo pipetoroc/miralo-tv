@@ -1,4 +1,5 @@
-import { getRecomendation } from '../api.js'
+import { getRecomendation } from '../../../js/api.js'
+import { showDetails } from '../../details/components/showDetails.js'
 
 function trending () {
   const recomendationSection = document.getElementById('recomendations')
@@ -7,12 +8,12 @@ function trending () {
     let count = 1
     results.forEach((item) => {
       const {
-        title, overview, poster_path // eslint-disable-line
+        title, overview, poster_path, id // eslint-disable-line
       } = item
 
       const article = document.createElement('article')
       article.className = 'recomendations__article'
-      article.addEventListener('click', () => console.log('mostrar los detalles de la película'))
+      article.addEventListener('click', showDetails)
 
       const poster = document.createElement('img')
       poster.src = `https://image.tmdb.org/t/p/w500/${poster_path}` // eslint-disable-line

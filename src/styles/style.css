@@ -252,10 +252,11 @@ h1,h2,h3{
   display: none;
 }
 /* Section main__categories */
-.main__categories{
+/* .main__categories{
   margin-top: 60px;
-}
+} */
 .main__container{
+  margin-top: 60px;
   display: grid;
   grid-template-columns:
     repeat(auto-fit,
@@ -266,7 +267,7 @@ h1,h2,h3{
 }
 .main__container--div{
   grid-template-columns: repeat(auto-fit,
-   minmax(150px, 1fr));
+   minmax(170px, 1fr));
 }
 .main__button{
   min-width: 144px;
@@ -355,11 +356,10 @@ h1,h2,h3{
   line-height: 21px;
 }
 img[alt]{
-  font-size: 1.4rem;
+  font-size: 2.4rem;
   color: white;
   text-align: center;
 }
 .search__li{
   background-color:  #69696947;
-  ;
 }

@@ -1,4 +1,4 @@
-import { getGenre } from '../api.js'
+import { getGenre } from '../../../js/api.js'
 
 function genreMovies (id, name) {
   const genreSecton = document.getElementById('genre')
