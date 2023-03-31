@@ -1,7 +1,7 @@
 import { showDetails } from './components/showDetails.js'
 
-function detailsPage (id, title, poster_path) {
-  showDetails(id, title, poster_path)
+function detailsPage (id, overview, poster_path, title, vote_average) {
+  showDetails(id, overview, poster_path, title, vote_average)
 }
 
 export { detailsPage }

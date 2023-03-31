@@ -17,6 +17,7 @@ function genreMovies (id, name) {
 
   getGenre(id).then((results) => {
     results.forEach(movie => {
+      console.log(movie)
       const item = document.createElement('li')
       item.className = 'search__li'
       const poster = document.createElement('img')
@@ -26,7 +27,7 @@ function genreMovies (id, name) {
       poster.setAttribute('loading', 'lazy')
       poster.addEventListener('click', () => {
         location.hash = `#movie-detail=${movie.id}` // eslint-disable-line
-        detailsPage(movie.id, movie.title, movie.poster_path) // eslint-disable-line
+        detailsPage(movie.id, movie.overview, movie.poster_path, movie.title) // eslint-disable-line
       })
       item.appendChild(poster)
       ulContainer.appendChild(item)
