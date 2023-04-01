@@ -16,18 +16,19 @@ function genreMovies (id, name) {
   ulContainer.setAttribute('id', 'ulContainer')
 
   getGenre(id).then((results) => {
+    console.log(results)
     results.forEach(movie => {
-      console.log(movie)
+      const { backdrop_path: backdropPath, id, overview, poster_path: posterPath, title, vote_average: voteAverage } = movie
       const item = document.createElement('li')
       item.className = 'search__li'
       const poster = document.createElement('img')
-      poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+      poster.src = `https://image.tmdb.org/t/p/w300/${posterPath}`
       poster.className = 'genre__img'
-      poster.setAttribute('alt', `Imagen de poster ${movie.title}`)
+      poster.setAttribute('alt', `Imagen de poster ${title}`)
       poster.setAttribute('loading', 'lazy')
       poster.addEventListener('click', () => {
-        location.hash = `#movie-detail=${movie.id}` // eslint-disable-line
-        detailsPage(movie.id, movie.overview, movie.poster_path, movie.title) // eslint-disable-line
+        location.hash = `#movie-detail=${id}` // eslint-disable-line
+        detailsPage(backdropPath, id, overview, posterPath, title, voteAverage) // eslint-disable-line
       })
       item.appendChild(poster)
       ulContainer.appendChild(item)

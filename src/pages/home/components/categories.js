@@ -10,12 +10,13 @@ function categories () {
     divContainer.className = 'main__container'
 
     genres.forEach(category => {
+      const { id, name } = category
       const button = document.createElement('button')
       button.textContent = category.name
       button.className = 'main__button'
       button.addEventListener('click', () => {
-        location.hash = `#category=${category.id}-${category.name}` // eslint-disable-line
-        genreMovies(category.id, category.name)
+        location.hash = `#category=${id}-${name}` // eslint-disable-line
+        genreMovies(id, name)
       })
       divContainer.appendChild(button)
       return categoriesSection.appendChild(divContainer)

@@ -24,18 +24,18 @@ function showResults (query) {
     sectionSearch.innerHTML = ''
 
     results.forEach(element => {
-      const { title, poster_path, id } = element // eslint-disable-line
+      const { backdrop_path: backdropPath, id, overview, poster_path: posterPath, title, vote_average: voteAverage} = element // eslint-disable-line
       const li = document.createElement('li')
       li.addEventListener('click', () => {
         location.hash = `#movie-detail=${id}`
-        detailsPage(id, title, poster_path)
+        detailsPage(backdropPath, id, overview, posterPath, title, voteAverage)
       })
       const div = document.createElement('div')
       div.className = 'search__li'
       const img = document.createElement('img')
       const posterTitle = document.createElement('h3')
 
-      img.src = `https://image.tmdb.org/t/p/w500/${poster_path}` // eslint-disable-line
+      img.src = `https://image.tmdb.org/t/p/w300/${posterPath}` // eslint-disable-line
       img.className = 'genre__img'
       img.alt = title
       posterTitle.innerText = title

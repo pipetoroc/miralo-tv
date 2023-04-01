@@ -7,18 +7,17 @@ function trending () {
   getRecomendation().then((results) => {
     let count = 1
     results.forEach((item) => {
-      const { id, overview, poster_path, title, vote_average } = item
+      const { backdrop_path: backdropPath, id, overview, poster_path: posterPath, title, vote_average: voteAverage } = item
 
-      console.log(title, vote_average)
       const article = document.createElement('article')
       article.className = 'recomendations__article'
       article.addEventListener('click', () => {
         location.hash = `#movie-detail=${id}` // eslint-disable-line
-        detailsPage(id, overview, poster_path, title, vote_average) // eslint-disable-line
+        detailsPage(backdropPath, id, overview, posterPath, title, voteAverage) // eslint-disable-line
       })
 
       const poster = document.createElement('img')
-      poster.src = `https://image.tmdb.org/t/p/w500/${poster_path}` // eslint-disable-line
+      poster.src = `https://image.tmdb.org/t/p/w300/${posterPath}` // eslint-disable-line
       poster.className = 'main__img'
       poster.setAttribute('alt', `Imagen de poster ${title}`)
       poster.setAttribute('loading', 'lazy')

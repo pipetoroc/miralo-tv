@@ -1,4 +1,4 @@
-function showDetails (id, overview, poster_path, title, vote_average) {
+function showDetails (backdropPath, id, overview, posterPath, title, voteAverage) {
   const recomendationSection = document.getElementById('recomendations')
   recomendationSection.classList.add('inactive')
 
@@ -27,7 +27,7 @@ function showDetails (id, overview, poster_path, title, vote_average) {
 
     const poster = document.createElement('img')
     poster.className = 'detail__poster'
-    poster.src = `https://image.tmdb.org/t/p/original/${poster_path}`
+    poster.src = `https://image.tmdb.org/t/p/original/${backdropPath}`
 
     const divContainer = document.createElement('div')
     divContainer.className = 'detail__text-container'
@@ -40,11 +40,11 @@ function showDetails (id, overview, poster_path, title, vote_average) {
     p.innerHTML = overview
     p.className = 'detail__p'
 
-    const voteAverage = document.createElement('p')
-    voteAverage.innerHTML = vote_average
-    voteAverage.className = 'detail__vote-average'
+    const vote = document.createElement('p')
+    vote.innerHTML = voteAverage
+    vote.className = 'detail__vote-average'
 
-    divContainer.append(h2, p, voteAverage)
+    divContainer.append(h2, p, vote)
 
     divDetail.appendChild(poster)
     sectionDetails.append(divDetail, divContainer)
