@@ -7,13 +7,13 @@ function trending () {
   getRecomendation().then((results) => {
     let count = 1
     results.forEach((item) => {
-      const { backdrop_path: backdropPath, id, overview, poster_path: posterPath, title, vote_average: voteAverage } = item
+      const { backdrop_path: backdropPath, genre_ids: genreIds, id, overview, poster_path: posterPath, title, vote_average: voteAverage } = item
 
       const article = document.createElement('article')
       article.className = 'recomendations__article'
       article.addEventListener('click', () => {
         location.hash = `#movie-detail=${id}` // eslint-disable-line
-        detailsPage(backdropPath, id, overview, posterPath, title, voteAverage) // eslint-disable-line
+        detailsPage(backdropPath, genreIds, id, overview, posterPath, title, voteAverage) // eslint-disable-line
       })
 
       const poster = document.createElement('img')
