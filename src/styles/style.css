@@ -367,6 +367,7 @@ img[alt]{
 .main__details{
   min-height: 100vh;
   width: 100%;
+  margin-bottom: 100px;
 
 }
 .detail__div{
@@ -400,7 +401,7 @@ img[alt]{
 .detail__text-container{
   position: absolute;
   top: 500px;
-  left: 150px;
+  left: 60px;
   display: flex;
   flex-direction: column;
   height: 300px;
@@ -429,4 +430,13 @@ img[alt]{
 .detail__vote-average::before{
   content: '\2B50     ';
   font-weight: 700;
+}
+.detail__buttons{
+  position: relative;
+  top: 800px;
+  margin-top: 0;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 200px) );
+}
+.main__h2--detail{
+  margin-top: 880px;
 }

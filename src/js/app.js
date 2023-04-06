@@ -5,7 +5,7 @@ import { detailsPage } from '../pages/details/detailsPage.js'
 
 const logoHome = document.getElementById('logoHome')
 logoHome.addEventListener('click', () => {
-  history.replaceState(null, null, ' ')
+  history.replaceState(null, null, ' ') //eslint-disable-line
   location.reload() // eslint-disable-line
 })
 
@@ -17,7 +17,8 @@ function homeNavigation () {
 }
 
 function detailPage () {
-  detailsPage()
+  const movieId = location.hash.split('=')[1] // obtener el id de la película de la URL
+  detailsPage(null, null, movieId, null, null, null, null) // pasar el id a la función detailsPage
 }
 
 function categoriesPage () {

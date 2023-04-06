@@ -40,4 +40,13 @@ async function getCollection (query) {
   return results
 }
 
-export { getRecomendation, getCategories, getGenre, getCollection }
+async function getRelated (movieId) {
+  const URL_RELATED = `${URL}/movie/${movieId}/similar?api_key=${API_KEY}`
+
+  const response = await fetch(URL_RELATED)
+  const data = await response.json()
+  const { results } = data
+  return results
+}
+
+export { getRecomendation, getCategories, getGenre, getCollection, getRelated }
