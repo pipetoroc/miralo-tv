@@ -1,7 +1,9 @@
-import { getCategories } from '../../../js/api.js'
 import { genreMovies } from '../../home/components/genreMovies.js'
+import { getMovie } from '../../../js/api.js'
 
-function showDetails (backdropPath, genreIds, id, overview, posterPath, title, voteAverage) {
+function showDetails () {
+  window.scrollTo(0, 0)
+
   const recomendationSection = document.getElementById('recomendations')
   recomendationSection.classList.add('inactive')
 
@@ -21,60 +23,69 @@ function showDetails (backdropPath, genreIds, id, overview, posterPath, title, v
   headerNav.classList.add('search')
 
   const sectionDetails = document.getElementById('details')
+  sectionDetails.classList.remove('inactive')
 
-  if (!document.querySelector('.detail__div')) {
-    const divDetail = document.createElement('div')
-    divDetail.className = 'detail__div'
+  const movieId = location.hash.split('=')[1] //eslint-disable-line
+  getMovie(movieId).then((data) => {
+    console.log(data)
+    const { backdrop_path: backdropPath, genres: genreIds, overview, title, vote_average: voteAverage } = data
 
-    const poster = document.createElement('img')
-    poster.className = 'detail__poster'
-    poster.src = `https://image.tmdb.org/t/p/original/${backdropPath}`
+    if (!document.querySelector('.detail__div')) {
+      const divDetail = document.createElement('div')
+      divDetail.className = 'detail__div'
 
-    const divContainer = document.createElement('div')
-    divContainer.className = 'detail__text-container'
+      const poster = document.createElement('img')
+      poster.className = 'detail__poster'
+      poster.src = `https://image.tmdb.org/t/p/original/${backdropPath}`
 
-    const h2 = document.createElement('h2')
-    h2.innerHTML = title
-    h2.className = 'detail__h2'
+      const divContainer = document.createElement('div')
+      divContainer.className = 'detail__text-container'
 
-    const p = document.createElement('p')
-    p.innerHTML = overview
-    p.className = 'detail__p'
+      const h2 = document.createElement('h2')
+      h2.innerHTML = title
+      h2.className = 'detail__h2'
 
-    const vote = document.createElement('p')
-    vote.innerHTML = voteAverage
-    vote.className = 'detail__vote-average'
+      const p = document.createElement('p')
+      p.innerHTML = overview
+      p.className = 'detail__p'
 
-    divContainer.append(h2, p, vote)
+      const vote = document.createElement('p')
+      vote.innerHTML = voteAverage
+      vote.className = 'detail__vote-average'
 
-    const divButtons = document.createElement('div')
-    divButtons.className = 'main__container detail__buttons'
+      divContainer.append(h2, p, vote)
 
-    divDetail.appendChild(poster)
-    sectionDetails.append(divDetail, divContainer, divButtons)
+      const divButtons = document.createElement('div')
+      divButtons.className = 'main__container detail__buttons'
 
-    getCategories().then(genres => {
-      for (const category of genres) {
-        genreIds.forEach(id => {
-          if (id === category.id) {
-            const button = document.createElement('button')
-            button.textContent = category.name
-            button.className = 'main__button'
-            button.addEventListener('click', () => {
-            location.hash = `#category=${genres.id}-${genres.name}` // eslint-disable-line
-              genreMovies(genres.id, genres.name)
-            })
-            divButtons.appendChild(button)
-            sectionDetails.appendChild(divButtons)
-          }
+      divDetail.appendChild(poster)
+      sectionDetails.append(divDetail, divContainer, divButtons)
+
+      genreIds.forEach(category => {
+        const button = document.createElement('button')
+        button.textContent = category.name
+        button.className = 'main__button'
+        button.addEventListener('click', () => {
+        location.hash = `#category=${category.id}-${category.name}` // eslint-disable-line
+          genreMovies(category.id, category.name)
         })
-      }
-    })
-  }
-  const main = document.querySelector('main')
-  main.appendChild(sectionDetails)
-}
+        divButtons.appendChild(button)
+        sectionDetails.appendChild(divButtons)
+      })
+    } else {
+      const poster = document.querySelector('.detail__poster')
+      poster.src = `https://image.tmdb.org/t/p/original/${backdropPath}`
 
-window.scrollTo(0, 0)
+      const h2 = document.querySelector('.detail__h2')
+      h2.textContent = title
+
+      const p = document.querySelector('.detail__p')
+      p.textContent = overview
+
+      const vote = document.querySelector('.detail__vote-average')
+      vote.textContent = voteAverage
+    }
+  })
+}
 
 export { showDetails }

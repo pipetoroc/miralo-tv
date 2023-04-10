@@ -395,7 +395,7 @@ img[alt]{
   z-index: 2;
 }
 .search{
-  opacity: 40%;
+  opacity: 70%;
   z-index: 4;
 }
 .detail__text-container{
@@ -433,7 +433,7 @@ img[alt]{
 }
 .detail__buttons{
   position: relative;
-  top: 800px;
+  top: 780px;
   margin-top: 0;
   grid-template-columns: repeat(auto-fit, minmax(170px, 200px) );
 }

@@ -2,7 +2,11 @@ import { getGenre } from '../../../js/api.js'
 import { detailsPage } from '../../details/detailsPage.js'
 
 function genreMovies (id, name) {
+  const sectionDetails = document.getElementById('details')
+  sectionDetails.classList.add('inactive')
+
   const genreSecton = document.getElementById('genre')
+  genreSecton.classList.remove('inactive')
   genreSecton.innerHTML = ''
 
   const h2 = document.createElement('h2')

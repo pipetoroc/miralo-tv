@@ -49,4 +49,12 @@ async function getRelated (movieId) {
   return results
 }
 
-export { getRecomendation, getCategories, getGenre, getCollection, getRelated }
+async function getMovie (id) {
+  const URL_MOVIE = `${URL}/movie/${id}?api_key=${API_KEY}`
+
+  const response = await fetch(URL_MOVIE)
+  const data = await response.json()
+  return data
+}
+
+export { getRecomendation, getCategories, getGenre, getCollection, getRelated, getMovie }

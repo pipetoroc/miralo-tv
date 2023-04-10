@@ -17,8 +17,9 @@ function homeNavigation () {
 }
 
 function detailPage () {
-  const movieId = location.hash.split('=')[1] // obtener el id de la película de la URL
-  detailsPage(null, null, movieId, null, null, null, null) // pasar el id a la función detailsPage
+  // const movieId = location.hash.split('=')[1] // obtener el id de la película de la URL
+  // detailsPage(null, null, movieId, null, null, null, null) // pasar el id a la función detailsPage
+  detailsPage()
 }
 
 function categoriesPage () {

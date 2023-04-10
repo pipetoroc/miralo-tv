@@ -1,7 +1,7 @@
 import { getRelated } from '../../../js/api.js'
+import { detailsPage } from '../detailsPage.js'
 
 function relatedMovies (id) {
-  console.log(id)
   const detailSection = document.getElementById('details')
 
   const ulContainer = document.createElement('ul')
@@ -12,7 +12,7 @@ function relatedMovies (id) {
     console.log(results)
 
     results.forEach(movie => {
-      const { poster_path: posterPath, title } = movie
+      const { backdrop_path: backdropPath, genre_ids: genreIds, id, overview, poster_path: posterPath, title, vote_average: voteAverage } = movie
 
       const item = document.createElement('li')
       item.className = 'search__li'
@@ -22,6 +22,10 @@ function relatedMovies (id) {
       poster.className = 'genre__img'
       poster.setAttribute('alt', `Imagen de poster ${title}`)
       poster.setAttribute('loading', 'lazy')
+      poster.addEventListener('click', () => {
+        location.hash = `#movie-detail=${id}` // eslint-disable-line
+        detailsPage(backdropPath, genreIds, id, overview, posterPath, title, voteAverage) // eslint-disable-line
+      })
 
       item.appendChild(poster)
       ulContainer.appendChild(item)
@@ -32,25 +36,6 @@ function relatedMovies (id) {
 
     detailSection.append(h2, ulContainer)
   })
-
-  //       const item = document.createElement('li')
-  //       item.className = 'search__li'
-
-  //       const poster = document.createElement('img')
-  //       poster.src = `https://image.tmdb.org/t/p/w300/${posterPath}`
-  //       poster.className = 'genre__img'
-  //       poster.setAttribute('alt', `Imagen de poster ${title}`)
-  //       poster.setAttribute('loading', 'lazy')
-  //       poster.addEventListener('click', () => {
-  //           location.hash = `#movie-detail=${id}` // eslint-disable-line
-  //           detailsPage(backdropPath, genreIds, id, overview, posterPath, title, voteAverage) // eslint-disable-line
-  //       })
-  //       item.appendChild(poster)
-  //       ulContainer.appendChild(item)
-  //       divRelatedMovies.appendChild(ulContainer)
-  //     }
-  //   })
-  //   divRelatedMovies.scrollIntoView({ behavior: 'smooth' })
 }
 
 export { relatedMovies }
