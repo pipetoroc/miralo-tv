@@ -1,4 +1,8 @@
-function showDetails (backdropPath, id, overview, posterPath, title, voteAverage) {
+import { getCategories } from '../../../js/api.js'
+import { genreMovies } from '../../home/components/genreMovies.js'
+
+function showDetails (backdropPath, genreIds, id, overview, posterPath, title, voteAverage) {
+  console.log(genreIds)
   const recomendationSection = document.getElementById('recomendations')
   recomendationSection.classList.add('inactive')
 
@@ -46,12 +50,37 @@ function showDetails (backdropPath, id, overview, posterPath, title, voteAverage
 
     divContainer.append(h2, p, vote)
 
+    const divButtons = document.createElement('div')
+    divButtons.className = 'main__container detail__buttons'
+
     divDetail.appendChild(poster)
-    sectionDetails.append(divDetail, divContainer)
+    sectionDetails.append(divDetail, divContainer, divButtons)
 
     const main = document.querySelector('main')
     main.appendChild(sectionDetails)
+
+    getCategories().then(genres => {
+      console.log(genres)
+
+      for (const category of genres) {
+        genreIds.forEach(id => {
+          if (id === category.id) {
+            console.log(category.name)
+            const button = document.createElement('button')
+            button.textContent = category.name
+            button.className = 'main__button'
+            button.addEventListener('click', () => {
+              location.hash = `#category=${genres.id}-${genres.name}` // eslint-disable-line
+              genreMovies(genres.id, genres.name)
+            })
+            divButtons.appendChild(button)
+            main.appendChild(divButtons)
+          }
+        })
+      }
+    })
   }
+
   window.scrollTo(0, 0)
 }
 

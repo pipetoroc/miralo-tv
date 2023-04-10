@@ -3,6 +3,7 @@ import { genreMovies } from './genreMovies.js'
 
 function categories () {
   getCategories().then((genres) => {
+    console.log(genres)
     const categoriesSection = document.getElementById('categories')
     categoriesSection.innerHTML = ''
 
