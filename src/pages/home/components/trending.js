@@ -11,13 +11,14 @@ function trending () {
 
       const article = document.createElement('article')
       article.className = 'recomendations__article'
-      article.addEventListener('click', () => {
-        location.hash = `#movie-detail=${id}` // eslint-disable-line
-        detailsPage(backdropPath, genreIds, id, genreIds, overview, posterPath, title, voteAverage) // eslint-disable-line
-      })
 
       const poster = document.createElement('img')
-      poster.src = `https://image.tmdb.org/t/p/w300/${posterPath}` // eslint-disable-line
+      poster.addEventListener('click', () => {
+        location.hash = `#movie-detail=${id}` // eslint-disable-line
+        detailsPage(backdropPath, genreIds, id, overview, posterPath, title, voteAverage)
+      })
+
+      poster.src = `https://image.tmdb.org/t/p/w300/${posterPath}`
       poster.className = 'main__img'
       poster.setAttribute('alt', `Imagen de poster ${title}`)
       poster.setAttribute('loading', 'lazy')

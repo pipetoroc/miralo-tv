@@ -24,18 +24,18 @@ function showResults (query) {
     sectionSearch.innerHTML = ''
 
     results.forEach(element => {
-      const { backdrop_path: backdropPath, id, overview, poster_path: posterPath, title, vote_average: voteAverage} = element // eslint-disable-line
+      const { backdrop_path: backdropPath, genre_ids: genreIds, id, overview, poster_path: posterPath, title, vote_average: voteAverage } = element
       const li = document.createElement('li')
       li.addEventListener('click', () => {
         location.hash = `#movie-detail=${id}`
-        detailsPage(backdropPath, id, overview, posterPath, title, voteAverage)
+        detailsPage(backdropPath, genreIds, id, overview, posterPath, title, voteAverage)
       })
       const div = document.createElement('div')
       div.className = 'search__li'
       const img = document.createElement('img')
       const posterTitle = document.createElement('h3')
 
-      img.src = `https://image.tmdb.org/t/p/w300/${posterPath}` // eslint-disable-line
+      img.src = `https://image.tmdb.org/t/p/w300/${posterPath}`
       img.className = 'genre__img'
       img.alt = title
       posterTitle.innerText = title
